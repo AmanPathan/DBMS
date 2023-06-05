@@ -1,6 +1,5 @@
 create database operators;
 use operators;
-
 create table student (id int not null primary key, name varchar(20), dbms int, maths int, dsa int,total int);
 insert into student values(1,'ganesh',55,45,60,160);
 insert into student values(1,'shlok',50,55,61,150);
