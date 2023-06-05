@@ -1,5 +1,6 @@
 create database operators;
 use operators;
+
 create table student (id int not null primary key, name varchar(20), dbms int, maths int, dsa int,total int);
 insert into student values(1,'ganesh',55,45,60,160);
 insert into student values(1,'shlok',50,55,61,150);
@@ -10,6 +11,7 @@ insert into student values(5,'aditya',70,69,50,189);
 
 select * from student;
 
+-- relational
 select * from student where total = 150;
 select * from student where total < 160;
 select * from student where total <= 150;
@@ -17,6 +19,34 @@ select * from student where total > 150;
 select * from student where total >= 150;
 select * from student where total != 147;
 
+-- logical
 select * from student where dbms>40 AND maths>50; 
 select * from student where dbms>40 OR dsa>=50;
-select * from student where NOT maths<50;  
+select * from student where NOT maths<50;
+select * from student where dsa IN (40,50,60);   
+select * from student where maths BETWEEN 40 AND 60;   
+
+
+-- arithmetic
+select maths + dbms + dsa as sum from student;
+select total / 3 as avg from student;
+select total - maths as diff from student;
+select maths * dbms as product from student;
+
+-- builtin functions
+
+select round(total / 3) as avg from student;
+select floor(total / 3) as avg from student;
+select abs(dbms - total) as avg from student;
+select sum(maths) as total_maths from student;
+select avg(maths) as total_maths from student;
+select count(maths) as total_maths from student;
+select min(total) as minimum from student;
+select max(total) as maximum from student;
+
+
+-- Date,Time,Now
+
+select curdate();
+select curtime();
+select now();
