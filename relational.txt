@@ -1,0 +1,23 @@
+create database operators;
+use operators;
+
+create table student (id int not null primary key, name varchar(20), dbms int, maths int, dsa int,total int);
+insert into student values(1,'ganesh',55,45,60,160);
+insert into student values(1,'shlok',50,55,61,150);
+insert into student values(2,'soham',35,50,62,147);
+insert into student values(3,'omkar',50,60,40,150);
+insert into student values(4,'karan',48,46,70,164);
+insert into student values(5,'aditya',70,69,50,189);
+
+select * from student;
+
+select * from student where total = 150;
+select * from student where total < 160;
+select * from student where total <= 150;
+select * from student where total > 150;
+select * from student where total >= 150;
+select * from student where total != 147;
+
+select * from student where dbms>40 AND maths>50; 
+select * from student where dbms>40 OR dsa>=50;
+select * from student where NOT maths<50;  
