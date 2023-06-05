@@ -1,0 +1,28 @@
+create database info;
+
+use info;
+
+create table shop(id int not null, order_id int, name varchar(20), quantity int, amount int);
+
+create table orders(order_id int not null, bought datetime,quantity int);
+
+create trigger getInfo
+after insert on shop
+for each row;
+insert into orders values(new.order_id,now(),new.quantity);
+
+create trigger getInfo
+after insert on shop
+for each row
+insert into orders values(new.order_id,now(),new.quantity);
+
+insert into shop values(1,111,'mobile',20,100000);
+insert into shop values(2,114,'car',20);
+insert into shop values(3,112,'T-Shirt',10,1000);
+insert into shop values(4,113,'TV',1,5000);
+
+
+
+select * from shop;
+
+select * from orders;

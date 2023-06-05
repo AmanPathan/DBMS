@@ -1,0 +1,38 @@
+create database view_example;
+use view_example;
+
+create table Persons (PersonID int,LastName varchar(50),FirstName varchar(50),City varchar(50));
+
+insert into Persons values(1,'Ugale','Karan','Pune');
+insert into Persons values(2,'Ingle','Pranav','Pimpri');
+insert into Persons values(3,'Patil','Shlok','Thane');
+insert into Persons values(4,'Patil','Kunal','Nashik');
+insert into Persons values(5,'Jadhav','Atharva','Pune');
+
+select * from Persons;
+
+create view PersonName AS
+select FirstName, LastName from Persons where city = 'Pune';
+
+select * from PersonName;
+
+create or replace view PersonName AS
+select PersonID,FirstName, LastName from Persons where city = 'Pune';
+
+update PersonName set PersonID = 10 where FirstName = 'Atharva';
+
+select * from Persons;
+
+
+create table PersonsData (ID int, FirstName varchar(20), Salary int);
+
+insert into PersonsData values (1,'Karan',150000);
+insert into PersonsData values (2,'Pranav',200000);
+insert into PersonsData values (3,'Shlok',450000);
+insert into PersonsData values (4,'Kunal',300000);
+insert into PersonsData values (5,'Atharva',250000);
+ 
+create or replace view PersonSalaries AS
+select A.PersonID, A.FirstName, B.Salary from Persons A, PersonsData B where A.PersonID = B.ID;
+
+select * from PersonSalaries;

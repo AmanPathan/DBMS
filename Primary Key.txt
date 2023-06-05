@@ -1,0 +1,44 @@
+create database shop;
+use shop;
+
+create table orders (id int not null, item_name varchar(20), quantity int, amount int);
+
+insert into student values(101,'Shirt',20,10000);
+insert into orders values(101,'Shirt',20,10000);
+insert into orders values(105,'Table',5,5000);
+insert into orders values(107,'Mobile',1,30000);
+insert into orders values(111,'Bag',2,2000);
+
+alter table orders add primary key(id);
+
+desc orders;
+
+create table profit(p_id int not null, o_id int, item_name varchar(20),net_profit int);
+
+alter table add primary key(p_id);
+alter table profit add primary key(p_id);
+
+alter table profit add foreign key(o_id) references orders(id);
+
+insert into profit values(1,101,'Shirt',2000);
+insert into profit values(105,'Table',1000);
+insert into profit values(2,105,'Table',1000);
+insert into profit values(3,107,'Mobile',5000);
+insert into profit values(4,111,'Bag',1500);
+
+desc profit;
+
+select * from orders;
+select * from profit;
+
+alter table orders add column city varchar(10);
+
+select * from orders;
+
+alter table profit modify column item_name varchar(30);
+
+desc profit;
+
+alter table orders drop column city;
+
+select * from orders;

@@ -1,0 +1,42 @@
+create database exam;
+use exam;
+
+create table student (id int not null primary key, name varchar(20), dbms int, maths int, dsa int);
+insert into student values(1,'ganesh',55,45,60);
+insert into student values(1,'shlok',50,55,61);
+insert into student values(2,'soham',35,50,62);
+insert into student values(3,'omkar',50,60,40);
+insert into student values(4,'karan',48,46,70);
+insert into student values(5,'aditya',70,69,50);
+
+alter table student add total int;
+
+update student set total = (dbms+maths+dsa) where id = 1;
+update student set total = (dbms+maths+dsa) where id = 2;
+update student set total = (dbms+maths+dsa) where id = 3;
+update student set total = (dbms+maths+dsa) where id = 4;
+update student set total = (dbms+maths+dsa) where id = 5;
+
+DELIMITER &&  
+CREATE PROCEDURE getToppers()  
+BEGIN
+select * from student where total >= 100;
+select * from student order by total DESC;
+END &&
+DELIMITER ;
+
+call getToppers();
+
+
+DELIMITER &&  
+CREATE FUNCTION getStudent(stud_id int)  
+returns varchar(20)
+DETERMINISTIC
+BEGIN
+DECLARE value varchar(20);
+select name into value FROM student WHERE id = stud_id;
+return value;
+END &&
+DELIMITER ;
+
+select getStudent(2);
